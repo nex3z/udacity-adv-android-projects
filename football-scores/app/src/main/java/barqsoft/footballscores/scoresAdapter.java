@@ -2,6 +2,7 @@ package barqsoft.footballscores;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
@@ -55,7 +56,16 @@ public class scoresAdapter extends CursorAdapter
         mHolder.away_crest.setImageResource(Utilies.getTeamCrestByTeamName(
                 cursor.getString(COL_AWAY)
         ));
-        //Log.v(FetchScoreTask.LOG_TAG,mHolder.home_name.getText() + " Vs. " + mHolder.away_name.getText() +" id " + String.valueOf(mHolder.match_id));
+
+        Resources res = view.getResources();
+        String description = String.format(res.getString(R.string.score_list_item_msg),
+                cursor.getString(COL_HOME), cursor.getString(COL_AWAY),
+                cursor.getString(COL_MATCHTIME),
+                cursor.getInt(COL_HOME_GOALS), cursor.getInt(COL_AWAY_GOALS));
+
+        mHolder.container.setContentDescription(description);
+
+                //Log.v(FetchScoreTask.LOG_TAG,mHolder.home_name.getText() + " Vs. " + mHolder.away_name.getText() +" id " + String.valueOf(mHolder.match_id));
         //Log.v(FetchScoreTask.LOG_TAG,String.valueOf(detail_match_id));
         LayoutInflater vi = (LayoutInflater) context.getApplicationContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
