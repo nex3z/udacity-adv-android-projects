@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import it.jaschke.alexandria.data.AlexandriaContract;
@@ -83,6 +84,8 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                     bookIntent.setAction(BookService.FETCH_BOOK);
                     getActivity().startService(bookIntent);
                     AddBook.this.restartLoader();
+                } else {
+                    Toast.makeText(getContext(), R.string.network_not_available, Toast.LENGTH_SHORT).show();
                 }
             }
         });
