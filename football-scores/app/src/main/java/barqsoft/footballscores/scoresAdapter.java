@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.support.v4.widget.CursorAdapter;
-import android.util.Log;
-import android.util.StringBuilderPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,12 +69,12 @@ public class scoresAdapter extends CursorAdapter
         StringBuffer description = new StringBuffer();
         Resources res = view.getResources();
 
-        String teamDescription = String.format(res.getString(R.string.score_list_team_msg),
+        String teamDescription = String.format(res.getString(R.string.cd_score_list_team_msg),
                 homeName, awayName, matchTime);
         description.append(teamDescription);
 
         if (homeGoals != -1 && awayGoals != -1) {
-            String scoreDescription = String.format(res.getString(R.string.score_list_score_msg),
+            String scoreDescription = String.format(res.getString(R.string.cd_score_list_score_msg),
                     homeGoals, awayGoals);
             description.append(scoreDescription);
         }
